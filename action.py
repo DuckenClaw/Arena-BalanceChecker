@@ -3,17 +3,21 @@
 import random
 
 class Action:
-    def __init__(self, name, base_initiative, base_damage, damage_mod, energy_cost, hit_chance_modifier):
+    def __init__(self, name, base_initiative, base_damage, damage_mod, energy_cost, hit_chance_modifier, isSpell):
         self.name = name
         self.base_initiative = base_initiative
         self.base_damage = base_damage
         self.damage_mod = damage_mod
         self.energy_cost = energy_cost
         self.hit_chance_modifier = hit_chance_modifier
+        self.isSpell = isSpell
 
     def calculate_damage(self, gladiator):
         # Formula for calculating damage based on gladiator's attributes
-        damage = (gladiator.str_ * self.damage_mod) + self.base_damage
+        if (self.isSpell):
+            damage = (gladiator.int_ * self.damage_mod) + self.base_damage
+        else:
+            damage = (gladiator.str_ * self.damage_mod) + self.base_damage
         return damage
 
     def calculate_initiative(self, gladiator):

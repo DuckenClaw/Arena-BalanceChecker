@@ -4,13 +4,16 @@ from gladiator import Gladiator
 from action import Action
 
 # ARGS = ("name", str_, agi, vit, sta, int_)
-gladiator1 = Gladiator("AaaA", 5, 9, 5, 5, 5)
-gladiator2 = Gladiator("VvvV", 8, 5, 5, 5, 5)
+gladiator1 = Gladiator("AaaA", 5, 5, 5, 5, 5)
+gladiator2 = Gladiator("VvvV", 5, 5, 5, 5, 5)
 
-# Action ARGS = ("name", base_initiative, base_damage, damage_mod, energy_cost, hit_chance_modifier)
-quick_attack = Action("Quick Attack", 13, 5, 2, 2, 2)
-precise_attack = Action("Precise Attack", 18, 10, 3, 4, 2)
-heavy_attack = Action("Heavy Attack", 23, 20, 4, 6, 2)
+# Action ARGS = ("name", base_initiative, base_damage, damage_mod, energy_cost, hit_chance_modifier, isSpell)
+quick_attack = Action("Quick Attack", 13, 5, 2, 2, 2, False)
+precise_attack = Action("Precise Attack", 18, 10, 3, 4, 2, False)
+heavy_attack = Action("Heavy Attack", 23, 20, 4, 6, 2, False)
+fire_ball = Action("Fireball", 20, 0, 5, 5, 20, True)
+water_burst = Action("Water Burst", 20, 5, 3, 5, 20, True)
+earth_catapult = Action("Earth Catapult", 20, 10, 2, 5, 20, True)
 
 def execute_turn(attacker, defender, action):
     print(f"\n{attacker.name}'s Turn:")
@@ -56,4 +59,4 @@ def simulate_battle(gladiator1, gladiator2, action1, action2):
 
 
 # Simulate the battle
-simulate_battle(gladiator1, gladiator2, heavy_attack, precise_attack)
+simulate_battle(gladiator1, gladiator2, precise_attack, fire_ball)
